@@ -22,13 +22,13 @@ public class Driver extends Subsystem {
 	private WPI_TalonSRX followerRightMotor;
 	private WPI_TalonSRX followerLeftMotor;
 	private DifferentialDrive diffDrive;
-	
+
 	private double angleEncoders;
-	
+
 	private SpeedControllerGroup rightController, leftController;
 
 	private AnalogGyro gyro;
-	
+
 	private static final double CONVERT_TICKS_TO_METER = (0.1524 * Math.PI) / 8192;
 
 	public Driver() {
@@ -44,7 +44,7 @@ public class Driver extends Subsystem {
 		this.diffDrive = new DifferentialDrive(this.leftController, this.rightController);
 
 		this.gyro = RobotMap.gyro;
-		
+
 		this.angleEncoders = 0;
 	}
 
@@ -107,15 +107,15 @@ public class Driver extends Subsystem {
 	public double getGyroAngle() {
 		return this.gyro.getAngle();
 	}
-	
+
 	public void resetAngleEncoders() {
 		this.angleEncoders = 0;
 	}
-	
+
 	public double getAngleEncoders() {
 		return this.angleEncoders;
 	}
-	
+
 	public void updateAngle(double deltaAngle) {
 		this.angleEncoders = (this.angleEncoders + deltaAngle) % 360;
 	}
