@@ -29,7 +29,7 @@ public class Driver extends Subsystem {
 
 	private AnalogGyro gyro;
 
-	private static final double CONVERT_TICKS_TO_METER = (0.1524 * Math.PI) / 8192;
+	public static final double CONVERT_TICKS_TO_METER = (0.1524 * Math.PI) / 8192;
 
 	public Driver() {
 		this.mainRightMotor = RobotMap.mainRightMotor;
@@ -64,7 +64,7 @@ public class Driver extends Subsystem {
 	}
 
 	public void arcadeDrive(double speed, double rotation) {
-		this.diffDrive.arcadeDrive(speed, rotation, true);
+		this.diffDrive.arcadeDrive(speed, rotation);
 	}
 
 	public double getRightPosition() {
@@ -113,7 +113,8 @@ public class Driver extends Subsystem {
 	}
 
 	public double getAngleEncoders() {
-		return this.angleEncoders;
+		double diff = this.getRightPosition() - this.getLeftPosition();
+		return Math.toDegrees(diff / 0.3) % 360;
 	}
 
 	public void updateAngle(double deltaAngle) {

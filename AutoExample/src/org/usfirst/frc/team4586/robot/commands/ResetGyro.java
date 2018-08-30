@@ -1,49 +1,40 @@
 package org.usfirst.frc.team4586.robot.commands;
 
-import org.omg.CORBA.TIMEOUT;
-import org.usfirst.frc.team4586.robot.subsystems.Driver;
+import org.usfirst.frc.team4586.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveTSecs extends Command {
-	private Driver driver;
-	private double time;
-	
-    public DriveTSecs(double time,Driver driver) {
+public class ResetGyro extends Command {
+
+    public ResetGyro() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	this.driver = driver;
-    	this.time = time;
-    	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setTimeout(this.time);
+    	Robot.m_driver.resetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	this.driver.arcadeDrive(0.6, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	this.driver.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	this.end();
-    	System.out.println("DriveTSecs interrupted");
+    	System.out.println("ResetGyro interrupted");
     }
 }

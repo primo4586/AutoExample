@@ -7,8 +7,12 @@
 
 package org.usfirst.frc.team4586.robot;
 
-import org.usfirst.frc.team4586.robot.commands.CalibrateGyro;
+import org.usfirst.frc.team4586.robot.commands.DriveTwoMeters;
 import org.usfirst.frc.team4586.robot.commands.ResetEndocers;
+import org.usfirst.frc.team4586.robot.commands.ResetGyro;
+import org.usfirst.frc.team4586.robot.commands.Rotate90Degrees;
+import org.usfirst.frc.team4586.robot.commands.RotatePID;
+import org.usfirst.frc.team4586.robot.commands.Test;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -59,6 +63,8 @@ public class OI {
 		this.y = new JoystickButton(this.driverStick, 4);
 
 		this.a.whenPressed(new ResetEndocers());
-		this.x.whenPressed(new CalibrateGyro());
+		this.x.whenPressed(new RotatePID());
+		this.y.whenPressed(new ResetGyro());
+		this.b.whenPressed(new DriveTwoMeters());
 	}
 }
